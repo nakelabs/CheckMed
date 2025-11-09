@@ -34,7 +34,6 @@ function App() {
 
   return (
     <div>
-      {/* Page Content */}
       {currentPage === 'home' && <Home onNavigateToSteps={() => setCurrentPage('steps')} />}
       {currentPage === 'steps' && <Steps onNavigateToInputName={() => setCurrentPage('inputName')} />}
       {currentPage === 'inputName' && (

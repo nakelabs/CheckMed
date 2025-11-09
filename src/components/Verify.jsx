@@ -11,16 +11,6 @@ function Verify({ scanData, onVerificationComplete }) {
         // Create FormData to send images and data
         const formData = new FormData()
         
-        // Log what we're sending
-        console.log('Sending verification request with:', {
-          drugName: scanData.drugName,
-          nafdacNumber: scanData.nafdacNumber,
-          drugType: scanData.drugType,
-          hasPackagingImage: !!scanData.packagingImage,
-          hasBlisterPackImage: !!scanData.blisterPackImage,
-          hasPackImage: !!scanData.packImage
-        })
-        
         // Add drug name
         formData.append('drug_name', scanData.drugName)
         
@@ -39,11 +29,9 @@ function Verify({ scanData, onVerificationComplete }) {
           formData.append('box_image', scanData.packImage)
         }
 
-        console.log('Making API request to: https://checkmed-2q81.onrender.com/api/verify/verify')
-
         // Make API call to backend
         const response = await axios.post(
-          'https://checkmed-2q81.onrender.com/api/verify/verify',
+          'https://checkmed-2q81.onrender.com/api/verify/',
           formData,
           {
             headers: {
@@ -52,26 +40,20 @@ function Verify({ scanData, onVerificationComplete }) {
           }
         )
 
-        console.log('API Response:', response)
-
         // The API returns a string response on success (200)
         // We'll treat 200 response as authentic
-        if (onVerificationComplete) {
-          onVerificationComplete({
-            isAuthentic: true,
-            message: response.data,
-            nafdacVerified: true,
-            matchPercentage: 100
-          })
-        }
+        // Wait 2 seconds to show the loading animation
+        setTimeout(() => {
+          if (onVerificationComplete) {
+            onVerificationComplete({
+              isAuthentic: true,
+              message: response.data,
+              nafdacVerified: true,
+              matchPercentage: 100
+            })
+          }
+        }, 2000)
       } catch (err) {
-        console.error('Verification error details:', {
-          message: err.message,
-          response: err.response,
-          status: err.response?.status,
-          data: err.response?.data
-        })
-        
         // Handle validation errors (422) or other errors
         let errorMessage = 'Failed to verify medication. Please try again.'
         

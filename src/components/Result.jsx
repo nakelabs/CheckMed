@@ -1,14 +1,49 @@
-import { useState } from 'react'
-
 function Result({ result, onStartNew }) {
   // Extract data from API response
   const isAuthentic = result?.isAuthentic || result?.authentic || false
   const hasError = result?.error || false
   
+  // Handle message - it might be an object or string
+  const getMessage = () => {
+    if (!result?.message) return '';
+    if (typeof result.message === 'string') return result.message;
+    if (typeof result.message === 'object') {
+      // If message is an object with status and reason, format it
+      if (result.message.status && result.message.reason) {
+        return `${result.message.status}: ${result.message.reason}`;
+      }
+      // Otherwise convert to JSON string
+      return JSON.stringify(result.message);
+    }
+    return String(result.message);
+  };
+  
+  const messageText = getMessage();
+  
   const handleStartNew = () => {
     if (onStartNew) {
       onStartNew()
     }
+  }
+
+  // Safety check - if no result data, show loading or error
+  if (!result) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-[#ECF6FE] to-white flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-[#286595] mb-4" style={{ fontFamily: 'Poppins' }}>
+            No Result Data
+          </h2>
+          <button
+            onClick={handleStartNew}
+            className="bg-[#286595] rounded-lg py-3 px-6 text-white font-semibold"
+            style={{ fontFamily: 'Poppins' }}
+          >
+            Start Over
+          </button>
+        </div>
+      </div>
+    )
   }
 
   // Show error state if verification failed
@@ -34,7 +69,7 @@ function Result({ result, onStartNew }) {
             VERIFICATION ERROR
           </h2>
           <p className="text-gray-700 text-base mb-8" style={{ fontFamily: 'Poppins' }}>
-            {result?.message || 'Unable to verify medication. Please try again.'}
+            {messageText || 'Unable to verify medication. Please try again.'}
           </p>
           <button
             onClick={handleStartNew}
@@ -100,7 +135,7 @@ function Result({ result, onStartNew }) {
                 className="text-gray-700 text-base mb-2" 
                 style={{ fontFamily: 'Poppins' }}
               >
-                {result?.message || 'This medication is authentic and safe to use.'}
+                {messageText || 'This medication is authentic and safe to use.'}
               </p>
             </>
           ) : (
@@ -131,9 +166,9 @@ function Result({ result, onStartNew }) {
                 className="text-gray-700 text-base mb-2" 
                 style={{ fontFamily: 'Poppins' }}
               >
-                {result?.message || '⚠️ WARNING: This medication appears to be counterfeit.'}
+                {messageText || '⚠️ WARNING: This medication appears to be counterfeit.'}
               </p>
-              {!result?.message && (
+              {!messageText && (
                 <p 
                   className="text-gray-600 text-sm" 
                   style={{ fontFamily: 'Poppins' }}
@@ -223,13 +258,13 @@ function Result({ result, onStartNew }) {
         </div>
 
         {/* Backend Response Message */}
-        {result?.message && (
+        {messageText && (
           <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <h4 className="text-sm font-semibold text-blue-800 mb-2" style={{ fontFamily: 'Poppins' }}>
               AI Analysis Result:
             </h4>
             <p className="text-xs text-blue-700" style={{ fontFamily: 'Poppins' }}>
-              {result.message}
+              {messageText}
             </p>
           </div>
         )}
