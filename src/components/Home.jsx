@@ -50,7 +50,7 @@ function Home({ onNavigateToSteps }) {
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Top Header */}
       <div className="h-16 bg-[#ECF6FE] flex items-center px-4">
-        <img src="/images/image.png" alt="CheckMed Logo" className="h-10" />
+        <img src="/images/image.png" alt="CheckMed Logo" className="h-14" />
         <h1 className="ml-3 text-[32px] font-black" style={{ fontFamily: 'Poppins' }}>
           <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
           <span className="text-[#286595]">Med</span>
@@ -58,138 +58,153 @@ function Home({ onNavigateToSteps }) {
       </div>
 
       {/* Hero Section */}
-      <div className="px-4 pt-20 pb-12">
-        <div className="mb-6">
-          <div className="w-full h-80 border-2 border-gray-300 bg-gray-50 flex items-center justify-center">
-            {/* Placeholder for hero image */}
-            <span className="text-gray-400 text-sm">Hero Image</span>
-          </div>
-        </div>
-
-        <h2 className="text-[64px] font-black leading-tight mb-4" style={{ fontFamily: 'Poppins' }}>
+      <div className="px-4 pt-12 pb-8">
+        <h2 className="text-[48px] font-black leading-tight mb-3" style={{ fontFamily: 'Poppins' }}>
           <span className="text-white" style={{ WebkitTextStroke: '2px #286595' }}>Check</span>
           <span className="text-[#286595]">Med</span>
         </h2>
 
-        <p className="text-[#2E73AC] text-lg mb-6" style={{ fontFamily: 'Poppins' }}>
-          Verify your medication instantly
+        <p className="text-[#2E73AC] text-xl font-semibold mb-8" style={{ fontFamily: 'Poppins' }}>
+          Verify your medication instantly with AI
         </p>
 
-        <button 
-          onClick={onNavigateToSteps}
-          className="w-full bg-[#B2DAFB] rounded-lg py-4 text-[#286595] text-lg font-semibold" 
-          style={{ fontFamily: 'Poppins' }}
-        >
-          Learn more
-        </button>
-      </div>
-
-      {/* Blue Section with Content */}
-      <div className="bg-[#286595] px-4 py-12">
-        <div className="mb-8">
-          <div className="w-full h-52 border-2 border-gray-400 bg-[#3A7BA8] flex items-center justify-center">
-            {/* Placeholder for content image */}
-            <span className="text-gray-300 text-sm">Content Image</span>
+        <div className="mb-6">
+          <div className="w-full h-64 rounded-xl overflow-hidden shadow-lg bg-gradient-to-br from-[#286595] to-[#62B4F7] flex items-center justify-center">
+            {/* Placeholder for hero image */}
+            <div className="text-center">
+              <div className="w-20 h-20 mx-auto mb-3 bg-white/20 rounded-full flex items-center justify-center">
+                <span className="text-white text-3xl">💊</span>
+              </div>
+              <p className="text-white/80 text-sm">Scan. Verify. Stay Safe.</p>
+            </div>
           </div>
         </div>
 
+        <button 
+          onClick={onNavigateToSteps}
+          className="w-full bg-[#286595] hover:bg-[#2E73AC] transition-colors rounded-xl py-4 text-white text-lg font-semibold shadow-md" 
+          style={{ fontFamily: 'Poppins' }}
+        >
+          Get Started →
+        </button>
+      </div>
+
+      {/* Info Section */}
+      <div className="bg-gradient-to-b from-[#286595] to-[#1e4d6f] px-4 py-10">
         {/* Main Explainer */}
         <div className="text-white mb-8" style={{ fontFamily: 'Poppins' }}>
-          <h3 className="text-xl font-bold text-center mb-4">
-            Fake Drugs: A Public Health Crisis
+          <h3 className="text-2xl font-bold mb-4 text-center">
+            ⚠️ Fake Drugs: A Public Health Crisis
           </h3>
-          <p className="text-base leading-relaxed text-center mb-6 px-2">
-            Counterfeit, expired, and substandard medicines often reach buyers through open
+          <p className="text-base leading-relaxed mb-6 opacity-95">
+            Counterfeit, expired, and substandard medicines reach buyers through open
             markets, informal vendors, and unregulated online sellers. These products may
-            contain the wrong dose, the wrong ingredient, or no active ingredient at all—causing
+            contain the wrong dose, wrong ingredient, or no active ingredient—causing
             treatment failure, longer illness, extra costs, and sometimes death.
           </p>
         </div>
 
-        {/* Key Stats */}
-        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5 mb-6" style={{ fontFamily: 'Poppins' }}>
-          <h4 className="text-white font-semibold text-lg mb-4 text-center">Key Statistics</h4>
-          <div className="space-y-3 text-white text-sm leading-relaxed">
+        {/* Key Stats Grid */}
+        <div className="space-y-4 mb-8">
+          <h4 className="text-white font-bold text-lg mb-4 text-center" style={{ fontFamily: 'Poppins' }}>
+            📊 Key Statistics
+          </h4>
+          
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
             <div className="flex items-start gap-3">
-              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
-              <p>
-                Nigeria has a persistent market for substandard and falsified medicines.{' '}
-                <span className="text-xs italic opacity-80">(WHO)</span>
-              </p>
+              <span className="text-[#B2DAFB] text-2xl flex-shrink-0">🇳🇬</span>
+              <div className="text-white text-sm leading-relaxed" style={{ fontFamily: 'Poppins' }}>
+                <p className="font-medium">Nigeria has a persistent market for substandard and falsified medicines.</p>
+                <span className="text-xs italic opacity-70">(WHO)</span>
+              </div>
             </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
             <div className="flex items-start gap-3">
-              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
-              <p>
-                National raids regularly seize large hauls worth hundreds of millions to billions of naira.{' '}
-                <span className="text-xs italic opacity-80">(Nairametrics)</span>
-              </p>
+              <span className="text-[#B2DAFB] text-2xl flex-shrink-0">💰</span>
+              <div className="text-white text-sm leading-relaxed" style={{ fontFamily: 'Poppins' }}>
+                <p className="font-medium">National raids regularly seize hauls worth hundreds of millions to billions of naira.</p>
+                <span className="text-xs italic opacity-70">(Nairametrics)</span>
+              </div>
             </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
             <div className="flex items-start gap-3">
-              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
-              <p>
-                Regulators estimate ~13–15% of the market may be substandard or falsified.{' '}
-                <span className="text-xs italic opacity-80">(Think Global Health)</span>
-              </p>
+              <span className="text-[#B2DAFB] text-2xl flex-shrink-0">📈</span>
+              <div className="text-white text-sm leading-relaxed" style={{ fontFamily: 'Poppins' }}>
+                <p className="font-medium">Regulators estimate ~13–15% of the market may be substandard or falsified.</p>
+                <span className="text-xs italic opacity-70">(Think Global Health)</span>
+              </div>
             </div>
+          </div>
+
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
             <div className="flex items-start gap-3">
-              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
-              <p>
-                Substandard antimalarial and pneumonia drugs contribute to preventable deaths in the region.{' '}
-                <span className="text-xs italic opacity-80">(PMC)</span>
-              </p>
+              <span className="text-[#B2DAFB] text-2xl flex-shrink-0">⚕️</span>
+              <div className="text-white text-sm leading-relaxed" style={{ fontFamily: 'Poppins' }}>
+                <p className="font-medium">Substandard antimalarial and pneumonia drugs contribute to preventable deaths.</p>
+                <span className="text-xs italic opacity-70">(PMC)</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center bg-[#62B4F7] rounded-lg py-4 px-6" style={{ fontFamily: 'Poppins' }}>
-          <p className="text-white font-bold text-base">
-            If you see fake medicines, report now.
-          </p>
-          <p className="text-white/90 text-sm mt-1">
-            Your report can prevent harm.
-          </p>
+        {/* CTA Box */}
+        <div className="bg-[#62B4F7] rounded-xl p-6 shadow-xl border-2 border-white/30" style={{ fontFamily: 'Poppins' }}>
+          <div className="text-center">
+            <p className="text-white font-bold text-lg mb-2">
+              🚨 If you see fake medicines, report now
+            </p>
+            <p className="text-white/95 text-sm mb-4">
+              Your report can prevent harm and save lives
+            </p>
+            <button 
+              onClick={onNavigateToSteps}
+              className="bg-white text-[#286595] px-8 py-3 rounded-lg font-bold text-sm hover:bg-gray-100 transition-colors shadow-md"
+            >
+              Start Verification
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Newsletter Section */}
-      <div className="bg-white px-4 py-8">
-        <div className="flex items-start justify-between">
-          <div>
-            <h3 className="text-[32px] font-black mb-2" style={{ fontFamily: 'Poppins' }}>
-              <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
-              <span className="text-[#286595]">Med</span>
+      <div className="bg-[#ECF6FE] px-4 py-8">
+        <div className="max-w-md mx-auto">
+          <div className="text-center mb-6">
+            <h3 className="text-2xl font-black mb-2" style={{ fontFamily: 'Poppins' }}>
+              <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Stay</span>
+              <span className="text-[#286595]"> Informed</span>
             </h3>
-            <p className="text-[#2E73AC] text-xs italic font-semibold" style={{ fontFamily: 'Poppins' }}>
-              Verify your medication instantly.
+            <p className="text-[#2E73AC] text-sm" style={{ fontFamily: 'Poppins' }}>
+              Get safety alerts and updates on counterfeit medicines
             </p>
           </div>
 
-          <div className="ml-8">
-            <p className="text-xs mb-2" style={{ fontFamily: 'Poppins' }}>
-              Sign up for our newsletter
-            </p>
+          <form onSubmit={handleSignUp} className="space-y-3">
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="w-40 h-7 bg-[#ECF6FE] px-2 text-xs mb-2 placeholder-[#286595]/40"
+              placeholder="Enter your email address"
+              className="w-full h-12 bg-white border-2 border-[#286595]/20 focus:border-[#286595] outline-none rounded-lg px-4 text-sm transition-colors"
               style={{ fontFamily: 'Poppins' }}
             />
             <button
-              onClick={handleSignUp}
+              type="submit"
               disabled={isSubmitting}
-              className={`w-40 h-7 rounded-md text-white text-xs ${
+              className={`w-full h-12 rounded-lg text-white text-sm font-semibold transition-all shadow-md ${
                 isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#62B4F7] hover:bg-[#4A9FE5]'
               }`}
               style={{ fontFamily: 'Poppins' }}
             >
-              {isSubmitting ? 'Sending...' : 'Sign Up'}
+              {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
             </button>
             {message && (
               <p 
-                className={`text-xs mt-1 ${
+                className={`text-sm text-center ${
                   message.includes('✓') ? 'text-green-600' : 'text-red-600'
                 }`}
                 style={{ fontFamily: 'Poppins' }}
@@ -197,14 +212,14 @@ function Home({ onNavigateToSteps }) {
                 {message}
               </p>
             )}
-          </div>
+          </form>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="bg-[#D9D9D9] py-3 px-4">
-        <p className="text-black/40 text-xs" style={{ fontFamily: 'Poppins' }}>
-          2025. CheckMed. All rights reserved
+      <div className="bg-[#286595] py-4 px-4">
+        <p className="text-white/60 text-xs text-center" style={{ fontFamily: 'Poppins' }}>
+          © 2025 CheckMed. All rights reserved. Data from WHO, NAFDAC, and peer-reviewed research.
         </p>
       </div>
     </div>
