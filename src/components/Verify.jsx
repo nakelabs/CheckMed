@@ -56,18 +56,54 @@ function Verify({ scanData, onVerificationComplete }) {
       } catch (err) {
         // Handle validation errors (422) or other errors
         let errorMessage = 'Failed to verify medication. Please try again.'
+        let errorData = null
         
         if (err.response?.data?.detail) {
           // Handle FastAPI validation error format
           if (Array.isArray(err.response.data.detail)) {
             errorMessage = err.response.data.detail.map(e => e.msg).join(', ')
-          } else {
+          } else if (typeof err.response.data.detail === 'string') {
             errorMessage = err.response.data.detail
+          } else if (typeof err.response.data.detail === 'object') {
+            // detail is an object with status, reason, etc.
+            errorData = err.response.data.detail
+            if (errorData.status && errorData.reason) {
+              errorMessage = `${errorData.status}: ${errorData.reason}`
+              if (errorData.expected_nafdac && errorData.provided_nafdac) {
+                errorMessage += `\nExpected: ${errorData.expected_nafdac}\nProvided: ${errorData.provided_nafdac}`
+              }
+            } else {
+              errorMessage = JSON.stringify(errorData)
+            }
           }
         } else if (err.response?.data?.message) {
-          errorMessage = err.response.data.message
+          if (typeof err.response.data.message === 'string') {
+            errorMessage = err.response.data.message
+          } else {
+            errorMessage = JSON.stringify(err.response.data.message)
+          }
+        } else if (err.response?.data) {
+          // Check if data itself is an object with status/reason
+          errorData = err.response.data
+          if (typeof errorData === 'object' && errorData !== null) {
+            if (errorData.status && errorData.reason) {
+              errorMessage = `${errorData.status}: ${errorData.reason}`
+              if (errorData.expected_nafdac && errorData.provided_nafdac) {
+                errorMessage += `\nExpected: ${errorData.expected_nafdac}\nProvided: ${errorData.provided_nafdac}`
+              }
+            } else {
+              errorMessage = JSON.stringify(errorData)
+            }
+          } else if (typeof errorData === 'string') {
+            errorMessage = errorData
+          }
         } else if (err.message) {
-          errorMessage = err.message
+          errorMessage = String(err.message)
+        }
+        
+        // Ensure errorMessage is always a string
+        if (typeof errorMessage !== 'string') {
+          errorMessage = 'An error occurred during verification'
         }
         
         setError(errorMessage)
@@ -75,11 +111,11 @@ function Verify({ scanData, onVerificationComplete }) {
         // Wait 3 seconds before showing result
         setTimeout(() => {
           if (onVerificationComplete) {
-            // If 422 validation error, it might mean fake/invalid
+            // Pass the full error data if available
             onVerificationComplete({
               isAuthentic: false,
               error: true,
-              message: errorMessage,
+              message: errorData || errorMessage,
               nafdacVerified: false,
               matchPercentage: 0
             })
@@ -139,7 +175,7 @@ function Verify({ scanData, onVerificationComplete }) {
               </h2>
               <p className="text-gray-600 text-base leading-relaxed" style={{ fontFamily: 'Poppins' }}>
                 {error ? (
-                  <span className="text-red-500">{error}</span>
+                  <span className="text-red-500 whitespace-pre-line">{String(error)}</span>
                 ) : (
                   'Our AI is analyzing your medication against verified records. This may take a few moments...'
                 )}

@@ -10,7 +10,12 @@ function Result({ result, onStartNew }) {
     if (typeof result.message === 'object') {
       // If message is an object with status and reason, format it
       if (result.message.status && result.message.reason) {
-        return `${result.message.status}: ${result.message.reason}`;
+        let msg = `${result.message.status}: ${result.message.reason}`;
+        // Add NAFDAC details if present
+        if (result.message.expected_nafdac && result.message.provided_nafdac) {
+          msg += `\n\nExpected NAFDAC: ${result.message.expected_nafdac}\nProvided NAFDAC: ${result.message.provided_nafdac}`;
+        }
+        return msg;
       }
       // Otherwise convert to JSON string
       return JSON.stringify(result.message);
