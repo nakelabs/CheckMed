@@ -3,7 +3,6 @@ import emailjs from '@emailjs/browser'
 
 function Home({ onNavigateToSteps }) {
   const [email, setEmail] = useState('')
-  const [currentSlide, setCurrentSlide] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
 
@@ -94,30 +93,62 @@ function Home({ onNavigateToSteps }) {
           </div>
         </div>
 
-        <p className="text-white text-center text-[15px] leading-relaxed mb-8" style={{ fontFamily: 'Poppins' }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        {/* Main Explainer */}
+        <div className="text-white mb-8" style={{ fontFamily: 'Poppins' }}>
+          <h3 className="text-xl font-bold text-center mb-4">
+            Fake Drugs: A Public Health Crisis
+          </h3>
+          <p className="text-base leading-relaxed text-center mb-6 px-2">
+            Counterfeit, expired, and substandard medicines often reach buyers through open
+            markets, informal vendors, and unregulated online sellers. These products may
+            contain the wrong dose, the wrong ingredient, or no active ingredient at all—causing
+            treatment failure, longer illness, extra costs, and sometimes death.
+          </p>
+        </div>
 
-        {/* Carousel Dots */}
-        <div className="flex justify-center gap-12 mb-8">
-          <button 
-            onClick={() => setCurrentSlide(0)}
-            className={`w-3 h-3 rounded-full ${currentSlide === 0 ? 'bg-[#ECF6FE]' : 'bg-transparent border border-white'}`}
-          />
-          <button 
-            onClick={() => setCurrentSlide(1)}
-            className={`w-3 h-3 rounded-full ${currentSlide === 1 ? 'bg-[#ECF6FE]' : 'bg-transparent border border-white'}`}
-          />
-          <button 
-            onClick={() => setCurrentSlide(2)}
-            className={`w-3 h-3 rounded-full ${currentSlide === 2 ? 'bg-[#ECF6FE]' : 'bg-transparent border border-white'}`}
-          />
-          <button 
-            onClick={() => setCurrentSlide(3)}
-            className={`w-3 h-3 rounded-full ${currentSlide === 3 ? 'bg-[#ECF6FE]' : 'bg-transparent border border-white'}`}
-          />
+        {/* Key Stats */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5 mb-6" style={{ fontFamily: 'Poppins' }}>
+          <h4 className="text-white font-semibold text-lg mb-4 text-center">Key Statistics</h4>
+          <div className="space-y-3 text-white text-sm leading-relaxed">
+            <div className="flex items-start gap-3">
+              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
+              <p>
+                Nigeria has a persistent market for substandard and falsified medicines.{' '}
+                <span className="text-xs italic opacity-80">(WHO)</span>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
+              <p>
+                National raids regularly seize large hauls worth hundreds of millions to billions of naira.{' '}
+                <span className="text-xs italic opacity-80">(Nairametrics)</span>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
+              <p>
+                Regulators estimate ~13–15% of the market may be substandard or falsified.{' '}
+                <span className="text-xs italic opacity-80">(Think Global Health)</span>
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-[#B2DAFB] text-xl font-bold flex-shrink-0">•</span>
+              <p>
+                Substandard antimalarial and pneumonia drugs contribute to preventable deaths in the region.{' '}
+                <span className="text-xs italic opacity-80">(PMC)</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="text-center bg-[#62B4F7] rounded-lg py-4 px-6" style={{ fontFamily: 'Poppins' }}>
+          <p className="text-white font-bold text-base">
+            If you see fake medicines, report now.
+          </p>
+          <p className="text-white/90 text-sm mt-1">
+            Your report can prevent harm.
+          </p>
         </div>
       </div>
 
