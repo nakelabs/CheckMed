@@ -70,7 +70,7 @@ function ScanSyrup({ onNavigateToNext }) {
     <div className="min-h-screen bg-white relative overflow-hidden pb-20">
       {/* Top Header */}
       <div className="h-16 bg-[#ECF6FE] flex items-center px-4">
-        <div className="w-8 h-8 border-2 border-gray-400" /> {/* Placeholder for hamburger icon */}
+        <img src="/images/image.png" alt="CheckMed Logo" className="h-10" />
         <h1 className="ml-3 text-[32px] font-black" style={{ fontFamily: 'Poppins' }}>
           <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
           <span className="text-[#286595]">Med</span>

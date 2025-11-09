@@ -17,7 +17,7 @@ function Result({ result, onStartNew }) {
       <div className="min-h-screen bg-white relative overflow-hidden">
         {/* Top Header */}
         <div className="h-16 bg-[#ECF6FE] flex items-center px-4">
-          <div className="w-8 h-8 border-2 border-gray-400" />
+          <img src="/images/image.png" alt="CheckMed Logo" className="h-10" />
           <h1 className="ml-3 text-[32px] font-black" style={{ fontFamily: 'Poppins' }}>
             <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
             <span className="text-[#286595]">Med</span>
@@ -58,7 +58,7 @@ function Result({ result, onStartNew }) {
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Top Header */}
       <div className="h-16 bg-[#ECF6FE] flex items-center px-4">
-        <div className="w-8 h-8 border-2 border-gray-400" /> {/* Placeholder for hamburger icon */}
+        <img src="/images/image.png" alt="CheckMed Logo" className="h-10" />
         <h1 className="ml-3 text-[32px] font-black" style={{ fontFamily: 'Poppins' }}>
           <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
           <span className="text-[#286595]">Med</span>
@@ -100,7 +100,7 @@ function Result({ result, onStartNew }) {
                 className="text-gray-700 text-base mb-2" 
                 style={{ fontFamily: 'Poppins' }}
               >
-                This medication is authentic and safe to use.
+                {result?.message || 'This medication is authentic and safe to use.'}
               </p>
             </>
           ) : (
@@ -131,14 +131,16 @@ function Result({ result, onStartNew }) {
                 className="text-gray-700 text-base mb-2" 
                 style={{ fontFamily: 'Poppins' }}
               >
-                ⚠️ WARNING: This medication appears to be counterfeit.
+                {result?.message || '⚠️ WARNING: This medication appears to be counterfeit.'}
               </p>
-              <p 
-                className="text-gray-600 text-sm" 
-                style={{ fontFamily: 'Poppins' }}
-              >
-                Do not consume. Please report to authorities.
-              </p>
+              {!result?.message && (
+                <p 
+                  className="text-gray-600 text-sm" 
+                  style={{ fontFamily: 'Poppins' }}
+                >
+                  Do not consume. Please report to authorities.
+                </p>
+              )}
             </>
           )}
         </div>
@@ -220,8 +222,20 @@ function Result({ result, onStartNew }) {
           )}
         </div>
 
+        {/* Backend Response Message */}
+        {result?.message && (
+          <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h4 className="text-sm font-semibold text-blue-800 mb-2" style={{ fontFamily: 'Poppins' }}>
+              AI Analysis Result:
+            </h4>
+            <p className="text-xs text-blue-700" style={{ fontFamily: 'Poppins' }}>
+              {result.message}
+            </p>
+          </div>
+        )}
+
         {/* Additional Info */}
-        <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+        <div className="mt-4 p-4 bg-gray-50 rounded-lg">
           <p className="text-xs text-gray-600 text-center" style={{ fontFamily: 'Poppins' }}>
             {isAuthentic 
               ? 'Always verify your medication before use. Store in a cool, dry place.'
