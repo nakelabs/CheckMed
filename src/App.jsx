@@ -6,6 +6,7 @@ import ScanTablet from './components/Scantablet'
 import ScanSyrup from './components/scansyrup'
 import Verify from './components/Verify'
 import Result from './components/Result'
+import Form from './components/Form'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
@@ -34,8 +35,9 @@ function App() {
 
   return (
     <div>
-      {currentPage === 'home' && <Home onNavigateToSteps={() => setCurrentPage('steps')} />}
+      {currentPage === 'home' && <Home onNavigateToSteps={() => setCurrentPage('steps')} onNavigateToForm={() => setCurrentPage('form')} />}
       {currentPage === 'steps' && <Steps onNavigateToInputName={() => setCurrentPage('inputName')} />}
+      {currentPage === 'form' && <Form onNavigateBack={() => setCurrentPage('home')} />}
       {currentPage === 'inputName' && (
         <InputName 
           onNavigateToScanTablet={(name) => handleInputNameNext(name, 'tablet')}

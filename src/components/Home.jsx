@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
 
-function Home({ onNavigateToSteps }) {
+function Home({ onNavigateToSteps, onNavigateToForm }) {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
@@ -49,12 +49,21 @@ function Home({ onNavigateToSteps }) {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Top Header */}
-      <div className="h-16 bg-[#ECF6FE] flex items-center px-4">
-        <img src="/images/image.png" alt="CheckMed Logo" className="h-14" />
-        <h1 className="ml-3 text-[32px] font-black" style={{ fontFamily: 'Poppins' }}>
-          <span className="text-white" style={{ WebkitTextStroke: '1px #286595' }}>Check</span>
-          <span className="text-[#286595]">Med</span>
-        </h1>
+      <div className="h-16 bg-[#ECF6FE] flex items-center justify-between px-4">
+        <div className="flex items-center min-w-0 flex-1">
+          <img src="/images/image.png" alt="CheckMed Logo" className="h-10 sm:h-14 flex-shrink-0" />
+          <h1 className="ml-2 text-[24px] sm:text-[32px] font-black whitespace-nowrap" style={{ fontFamily: 'Poppins' }}>
+            <span className="text-white" style={{ WebkitTextStroke: '0.5px #286595', WebkitTextStrokeWidth: 'clamp(0.5px, 1px, 1px)' }}>Check</span>
+            <span className="text-[#286595]">Med</span>
+          </h1>
+        </div>
+        <button
+          onClick={onNavigateToForm}
+          className="bg-[#286595] hover:bg-[#1e4d6b] text-white px-2 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold transition-colors shadow-md flex items-center gap-1 whitespace-nowrap flex-shrink-0"
+          style={{ fontFamily: 'Poppins' }}
+        >
+          <span className="hidden sm:inline">🏢</span> Register
+        </button>
       </div>
 
       {/* Hero Section */}
