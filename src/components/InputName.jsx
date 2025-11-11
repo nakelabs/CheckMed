@@ -66,13 +66,6 @@ function InputName({ onNavigateToNext, onNavigateToScanTablet, onNavigateToScanS
               className="flex-1 h-14 bg-[#ECF6FE] px-4 text-base placeholder-[#286595]/40 rounded"
               style={{ fontFamily: 'Poppins' }}
             />
-            <button
-              onClick={handleSearch}
-              className="w-44 h-14 bg-[#62B4F7] rounded-md text-white text-base font-semibold"
-              style={{ fontFamily: 'Poppins' }}
-            >
-              Search
-            </button>
           </div>
         </div>
 
