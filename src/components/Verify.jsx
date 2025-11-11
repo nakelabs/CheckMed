@@ -29,6 +29,44 @@ function Verify({ scanData, onVerificationComplete }) {
           formData.append('box_image', scanData.packImage)
         }
 
+        // Save scan data to localStorage for potential report
+        const scanDataForReport = {
+          drug_name: scanData.drugName,
+          nafdac_number: scanData.nafdacNumber,
+          drug_type: scanData.drugType,
+          timestamp: new Date().toISOString()
+        }
+        
+        // Store images as base64 for report
+        if (scanData.drugType === 'tablet') {
+          if (scanData.packagingImage) {
+            const boxReader = new FileReader()
+            boxReader.onloadend = () => {
+              scanDataForReport.box_image_base64 = boxReader.result
+              localStorage.setItem('lastScanData', JSON.stringify(scanDataForReport))
+            }
+            boxReader.readAsDataURL(scanData.packagingImage)
+          }
+          if (scanData.blisterPackImage) {
+            const blisterReader = new FileReader()
+            blisterReader.onloadend = () => {
+              const stored = JSON.parse(localStorage.getItem('lastScanData') || '{}')
+              stored.blister_image_base64 = blisterReader.result
+              localStorage.setItem('lastScanData', JSON.stringify(stored))
+            }
+            blisterReader.readAsDataURL(scanData.blisterPackImage)
+          }
+        } else if (scanData.drugType === 'syrup') {
+          if (scanData.packImage) {
+            const packReader = new FileReader()
+            packReader.onloadend = () => {
+              scanDataForReport.box_image_base64 = packReader.result
+              localStorage.setItem('lastScanData', JSON.stringify(scanDataForReport))
+            }
+            packReader.readAsDataURL(scanData.packImage)
+          }
+        }
+
         // Make API call to backend
         const response = await axios.post(
           'https://checkmed-2q81.onrender.com/api/verify/',
