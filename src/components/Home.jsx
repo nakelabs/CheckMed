@@ -229,6 +229,7 @@ function Home({ onNavigateToSteps, onNavigateToForm }) {
       <div className="bg-[#286595] py-4 px-4">
         <p className="text-white/60 text-xs text-center" style={{ fontFamily: 'Poppins' }}>
           © 2025 CheckMed. All rights reserved. Data from WHO, NAFDAC, and peer-reviewed research.
+        
         </p>
       </div>
     </div>
